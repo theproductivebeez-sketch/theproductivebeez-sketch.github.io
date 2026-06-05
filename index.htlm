@@ -1,0 +1,1070 @@
+HTLM 
+
+
+            </div>
+        </header>
+
+        <!-- Main Journey Workspace -->
+        <main>
+            <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Florece Donde Estés — Wellness & Adaptation Guide</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-cream: #FDFBF7;
+            --card-beige: #F7F3EB;
+            --terracotta: #C87A63;
+            --terracotta-dark: #A55E49;
+            --sage: #8A9A86;
+            --sage-light: #E2E7E1;
+            --text-dark: #3A3530;
+            --text-muted: #706961;
+            --white: #FFFFFF;
+            --rose-gold: linear-gradient(135deg, #E5B2A3 0%, #C87A63 100%);
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            --shadow-subtle: 0 10px 30px rgba(58, 53, 48, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* App Shell */
+        .app-container {
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background-color: var(--bg-cream);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0,0,0,0.03);
+        }
+
+        /* Top Header */
+        header {
+            padding: 24px 24px 16px 24px;
+            background-color: var(--bg-cream);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .brand-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-subtitle {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 2px;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin-top: 20px;
+            background: var(--sage-light);
+            height: 4px;
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--rose-gold);
+            width: 16.66%;
+            transition: var(--transition-smooth);
+        }
+
+        /* Main Content Area */
+        main {
+            flex: 1;
+            padding: 16px 24px 100px 24px;
+            position: relative;
+        }
+
+        .stage-pane {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .stage-pane.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Typography Styles */
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            line-height: 1.2;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            margin: 28px 0 16px 0;
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        /* UI Cards & Elements */
+        .card {
+            background-color: var(--card-beige);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(200, 122, 99, 0.08);
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--terracotta);
+            margin-bottom: 12px;
+        }
+
+        /* Form Controls */
+        textarea {
+            width: 100%;
+            border: 1px solid rgba(112, 105, 97, 0.2);
+            border-radius: 12px;
+            padding: 14px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background-color: var(--white);
+            color: var(--text-dark);
+            resize: none;
+            margin-bottom: 12px;
+            transition: var(--transition-smooth);
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--terracotta);
+            box-shadow: 0 0 0 3px rgba(200, 122, 99, 0.1);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            border: 1px solid rgba(112, 105, 97, 0.2);
+            border-radius: 12px;
+            padding: 12px;
+            font-family: inherit;
+            margin-bottom: 10px;
+            background-color: var(--white);
+        }
+
+        /* Mood Selector */
+        .mood-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .mood-btn {
+            background: var(--white);
+            border: 1px solid rgba(112, 105, 97, 0.15);
+            border-radius: 12px;
+            padding: 12px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .mood-btn.selected {
+            background-color: var(--terracotta);
+            color: var(--white);
+            border-color: var(--terracotta);
+            transform: scale(1.03);
+        }
+
+        /* Breathing Circle */
+        .breathing-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 0;
+        }
+
+        .breathing-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--rose-gold);
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            box-shadow: 0 0 30px rgba(200, 122, 99, 0.2);
+        }
+
+        .breathing-circle.expand {
+            animation: breatheAnimation 8s infinite ease-in-out;
+        }
+
+        @keyframes breatheAnimation {
+            0%, 100% { transform: scale(1); background-color: var(--terracotta); }
+            40%, 60% { transform: scale(1.4); background-color: var(--sage); }
+        }
+
+        /* Sliders */
+        .slider-group {
+            margin-bottom: 16px;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .range-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--sage-light);
+            outline: none;
+        }
+
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--terracotta);
+            cursor: pointer;
+            transition: 0.1s;
+        }
+
+        /* Challenges / Checklists */
+        .interactive-item {
+            display: flex;
+            align-items: center;
+            background: var(--white);
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .interactive-item input[type="checkbox"] {
+            margin-right: 12px;
+            accent-color: var(--terracotta);
+            width: 16px;
+            height: 16px;
+        }
+
+        .interactive-item.checked {
+            opacity: 0.6;
+            text-decoration: line-through;
+            background: rgba(226, 231, 225, 0.4);
+        }
+
+        /* Affirmation / Quotes Box */
+        .quote-box {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            text-align: center;
+            color: var(--text-dark);
+            padding: 16px;
+            border-left: 2px solid var(--terracotta);
+            margin: 15px 0;
+            background: rgba(200, 122, 99, 0.03);
+        }
+
+        /* Reframe tool */
+        .reframe-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+            border-left: 4px solid #DF9B87;
+        }
+        .reframe-arrow {
+            color: var(--sage);
+            font-weight: bold;
+            margin: 4px 0;
+            font-size: 0.85rem;
+        }
+
+        /* Style Grid */
+        .style-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .style-card {
+            background: var(--white);
+            padding: 14px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(112, 105, 97, 0.1);
+        }
+        .style-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--terracotta);
+            margin-bottom: 4px;
+        }
+
+        /* Small Wins List */
+        .wins-container {
+            margin-top: 10px;
+        }
+        .win-tag {
+            display: inline-block;
+            background: var(--sage-light);
+            color: var(--text-dark);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 4px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Bottom Nav Navigation */
+        .nav-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 24px;
+            background: linear-gradient(to top, var(--bg-cream) 80%, rgba(253, 251, 247, 0));
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            z-index: 5;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: 12px;
+            border: none;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-align: center;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-muted);
+            border: 1px solid rgba(112, 105, 97, 0.2);
+        }
+
+        .btn-secondary:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .btn-primary {
+            background: var(--rose-gold);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(200, 122, 99, 0.2);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.95;
+        }
+
+        /* Graduation Elements */
+        .badge-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .badge {
+            width: 100px;
+            height: 100px;
+            background: var(--rose-gold);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 10px 25px rgba(200, 122, 99, 0.3);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Confetti Canvas overlay inside view */
+        #confetti-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+            display: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Print/PDF Layout overrides */
+        @media print {
+            body { background: white; color: black; }
+            .app-container { max-width: 100%; box-shadow: none; }
+            .nav-container, header, .no-print { display: none !important; }
+            .stage-pane { display: block !important; opacity: 1 !important; page-break-after: always; }
+            textarea { border: none; background: transparent; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <canvas id="confetti-canvas"></canvas>
+
+        <!-- Global Header -->
+        <header>
+            <div class="brand-logo">Florece Donde Estés</div>
+            <div class="brand-subtitle">Wellness & Adaptation Guide</div>
+            <div class="progress-container">
+                <div class="progress-bar" id="app-progress"></div>
+
+            <!-- STAGE 1: BIENVENIDA & GRATITUD -->
+            <div class="stage-pane active" id="stage-1">
+                <h1>Tu nueva vida comienza dentro de ti</h1>
+                <p>Echar raíces en un nuevo suelo toma tiempo. Cada paso que das, por más pequeño que parezca, es una prueba de tu resiliencia y valentía. Estás aquí para florecer.</p>
+                
+                <div class="card">
+                    <div class="card-title">Práctica de Gratitud</div>
+                    <p style="font-size:0.85rem;">Encuentra balance registrando los pilares de tu día:</p>
+                    <input type="text" id="g1" placeholder="1. Algo por lo que agradezco hoy..." oninput="saveField('g1')">
+                    <input type="text" id="g2" placeholder="2. Algo por lo que agradezco hoy..." oninput="saveField('g2')">
+                    <input type="text" id="g3" placeholder="3. Algo por lo que agradezco hoy..." oninput="saveField('g3')">
+                    <input type="text" id="g4" placeholder="Un logro reciente o algo que me enorgullece..." oninput="saveField('g4')">
+                    <input type="text" id="g5" placeholder="Una fortaleza personal que me trajo aquí..." oninput="saveField('g5')">
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Reflexión Profunda</div>
+                    <p style="font-size:0.85rem;">¿Qué le dirías a tu versión del pasado (o a esa mujer que recién bajaba del avión) sobre este viaje?</p>
+                    <textarea id="reflection-younger" rows="4" placeholder="Escribe aquí tu carta o mensaje..." oninput="saveField('reflection-younger')"></textarea>
+                </div>
+
+                <div class="card" style="text-align: center;">
+                    <div class="card-title">Afirmación del Día</div>
+                    <div class="quote-box" id="daily-affirmation">Soy más fuerte de lo que imagino.</div>
+                    <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.8rem; display:inline-block; width:auto;" onclick="rotateAffirmation()">Cambiar afirmación</button>
+                </div>
+            </div>
+
+            <!-- STAGE 2: PAZ INTERIOR -->
+            <div class="stage-pane" id="stage-2">
+                <h1>Encuentra calma en medio del cambio</h1>
+                <p>El choque cultural y la distancia despiertan emociones complejas. No las reprimas; dales un espacio seguro para existir.</p>
+                
+                <div class="card">
+                    <div class="card-title">¿Cómo te sientes hoy?</div>
+                    <div class="mood-grid">
+                        <div class="mood-btn" onclick="selectMood('Feliz')">😊 Feliz</div>
+                        <div class="mood-btn" onclick="selectMood('Esperanzada')">✨ Esperanzada</div>
+                        <div class="mood-btn" onclick="selectMood('Nerviosa')">⏳ Nerviosa</div>
+                        <div class="mood-btn" onclick="selectMood('Triste')">🌊 Triste</div>
+                        <div class="mood-btn" onclick="selectMood('Frustrada')">⚡ Frustrada</div>
+                        <div class="mood-btn" onclick="selectMood('Sola')">🍂 Sola</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Despejando la Mente</div>
+                    <textarea id="worry-1" rows="2" placeholder="¿Qué me preocupa hoy?" oninput="saveField('worry-1')"></textarea>
+                    <textarea id="worry-2" rows="2" placeholder="¿Qué sí puedo controlar?" oninput="saveField('worry-2')"></textarea>
+                    <textarea id="worry-3" rows="2" placeholder="¿Qué elijo soltar o dejar ir?" oninput="saveField('worry-3')"></textarea>
+                </div>
+
+                <div class="card breathing-box">
+                    <div class="card-title">Pausa de Respiración Consciente</div>
+                    <p style="font-size:0.85rem; text-align:center; margin-bottom:20px;">Sincroniza tu respiración con el círculo. Inhala al expandir, exhala al contraer.</p>
+                    <div class="breathing-circle" id="breathe-circle">Respirar</div>
+                    <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.8rem; width:auto;" id="breathe-trigger" onclick="toggleBreathing()">Iniciar (60s)</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Transforma tus Pensamientos</div>
+                    <div class="reframe-card">
+                        <div style="font-size: 0.85rem; color: var(--text-muted); font-style:italic;">"No hablo el idioma lo suficientemente bien."</div>
+                        <div class="reframe-arrow">➔ Enfoque Empoderador:</div>
+                        <div style="font-size: 0.9rem; font-weight:500; color: var(--sage);">"Estoy mejorando cada día y mi valor no depende de mi fluidez."</div>
+                    </div>
+                    <div class="reframe-card">
+                        <div style="font-size: 0.85rem; color: var(--text-muted); font-style:italic;">"Aquí soy invisible, nadie me conoce."</div>
+                        <div class="reframe-arrow">➔ Enfoque Empoderador:</div>
+                        <div style="font-size: 0.9rem; font-weight:500; color: var(--sage);">"Tengo la oportunidad única de redescubrirme y diseñar mi propio espacio."</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STAGE 3: CUIDANDO DE TI -->
+            <div class="stage-pane" id="stage-3">
+                <h1>Tu bienestar es tu base</h1>
+                <p>Cuando emigramos, tendemos a descuidar los pilares básicos de salud por atender la burocracia, el trabajo o el estudio. Evalúa cómo te estás tratando.</p>
+                
+                <div class="card">
+                    <div class="card-title">Autoevaluación de Autocuidado</div>
+                    
+                    <div class="slider-group">
+                        <div class="slider-label"><span>Sueño y Descanso</span><span id="v-sueño">5</span>/10</div>
+                        <input type="range" min="1" max="10" value="5" class="range-slider" id="sl-sueno" oninput="updateSlider('sueno')">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-label"><span>Nutrición Consciente</span><span id="v-nutr">5</span>/10</div>
+                        <input type="range" min="1" max="10" value="5" class="range-slider" id="sl-nutr" oninput="updateSlider('nutr')">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-label"><span>Movimiento / Ejercicio</span><span id="v-ejer">5</span>/10</div>
+                        <input type="range" min="1" max="10" value="5" class="range-slider" id="sl-ejer" oninput="updateSlider('ejer')">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-label"><span>Autocompasión y Diálogo</span><span id="v-comp">5</span>/10</div>
+                        <input type="range" min="1" max="10" value="5" class="range-slider" id="sl-comp" oninput="updateSlider('comp')">
+                    </div>
+                </div>
+
+                <div class="card" id="suggestions-box">
+                    <div class="card-title">Sugerencia de tu Mentor</div>
+                    <p id="dynamic-suggestion" style="font-size: 0.9rem; font-style: italic;">Modifica los controles superiores para recibir consejos personalizados.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Reto de Bienestar de la Semana</div>
+                    <p style="font-size:0.85rem;">Selecciona una o dos acciones sencillas para comprometerte contigo misma:</p>
+                    <div class="interactive-item" onclick="toggleTask(this, 'task1')">
+                        <input type="checkbox" id="task1">
+                        <span>Caminar 20 minutos al aire libre sin mirar el teléfono</span>
+                    </div>
+                    <div class="interactive-item" onclick="toggleTask(this, 'task2')">
+                        <input type="checkbox" id="task2">
+                        <span>Llamar o enviar un audio sincero a un ser querido</span>
+                    </div>
+                    <div class="interactive-item" onclick="toggleTask(this, 'task3')">
+                        <input type="checkbox" id="task3">
+                        <span>Practicar 3 frases cotidianas en el idioma local frente al espejo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STAGE 4: ADAPTÁNDOTE -->
+            <div class="stage-pane" id="stage-4">
+                <h1>Creando confianza en un entorno nuevo</h1>
+                <p>La adaptación no ocurre de golpe. Se construye sumando pequeños hitos que demuestran tu capacidad de conquistar lo desconocido.</p>
+                
+                <div class="card">
+                    <div class="card-title">Confianza Lingüística</div>
+                    <div class="slider-group">
+                        <div class="slider-label"><span>Expresión Oral (Hablar)</span><span id="v-l1">5</span>/10</div>
+                        <input type="range" min="1" max="10" value="5" class="range-slider" id="sl-l1" oninput="updateSlider('l1')">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-label"><span>Comprensión Auditiva (Escuchar)</span><span id="v-l2">5</span>/10</div>
+                        <input type="range" min="1" max="10" value="5" class="range-slider" id="sl-l2" oninput="updateSlider('l2')">
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Confianza Social</div>
+                    <textarea id="social-diff" rows="2" placeholder="¿Qué situación social o trámite te genera fricción o timidez?" oninput="saveField('social-diff')"></textarea>
+                    <textarea id="social-step" rows="2" placeholder="¿Qué micro-paso seguro podrías dar esta semana?" oninput="saveField('social-step')"></textarea>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Bitácora de Pequeñas Victorias</div>
+                    <p style="font-size:0.85rem;">Registra triunfos cotidianos (ej. Pedir un café, entender una dirección, sonreírle a un vecino):</p>
+                    <div style="display:flex; gap:8px;">
+                        <input type="text" id="win-input" placeholder="Ej: Logré hacer la compra sola..." style="margin-bottom:0;">
+                        <button class="btn btn-primary" style="padding:0 16px; width:auto; flex:none;" onclick="addSmallWin()">+</button>
+                    </div>
+                    <div class="wins-container" id="wins-pool"></div>
+                </div>
+            </div>
+
+            <!-- STAGE 5: IMAGEN & PRESENCIA -->
+            <div class="stage-pane" id="stage-5">
+                <h1>Muéstrate al mundo con confianza</h1>
+                <p>Hacerte visible en un nuevo país no se trata de cumplir expectativas estéticas ajenas, sino de reflejar tu identidad, tu dignidad y tu historia a través de tu postura y tu presencia.</p>
+                
+                <div class="card">
+                    <div class="card-title">Presencia Intencional</div>
+                    <textarea id="pres-1" rows="2" placeholder="¿Cómo quiero sentirme al entrar a una habitación o reunión?" oninput="saveField('pres-1')"></textarea>
+                    <textarea id="pres-2" rows="2" placeholder="¿Qué prendas de mi clóset me hacen sentir segura y auténtica?" oninput="saveField('pres-2')"></textarea>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Checklist de Seguridad Personal</div>
+                    <div class="interactive-item" onclick="toggleTask(this, 'chk1')">
+                        <input type="checkbox" id="chk1">
+                        <span>Postura erguida (Hombros relajados, coronilla al cielo)</span>
+                    </div>
+                    <div class="interactive-item" onclick="toggleTask(this, 'chk2')">
+                        <input type="checkbox" id="chk2">
+                        <span>Sostener la mirada con amabilidad y naturalidad</span>
+                    </div>
+                    <div class="interactive-item" onclick="toggleTask(this, 'chk3')">
+                        <input type="checkbox" id="chk3">
+                        <span>Tener lista una breve presentación personal de 30 segundos</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Inspiración de Estilo y Energía</div>
+                    <div class="style-grid">
+                        <div class="style-card">
+                            <h4>Profesional</h4>
+                            <p style="font-size:0.75rem; margin:0;">Estructura, colores neutros, autoridad y enfoque.</p>
+                        </div>
+                        <div class="style-card">
+                            <h4>Casual Chic</h4>
+                            <p style="font-size:0.75rem; margin:0;">Comodidad premium, texturas suaves, accesibilidad.</p>
+                        </div>
+                        <div class="style-card">
+                            <h4>Emprendedora</h4>
+                            <p style="font-size:0.75rem; margin:0;">Creatividad, accesorios con historia, dinamismo.</p>
+                        </div>
+                        <div class="style-card">
+                            <h4>Elegante</h4>
+                            <p style="font-size:0.75rem; margin:0;">Líneas limpias, minimalismo y alta seguridad.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STAGE 6: NUEVO CAPÍTULO & GRADUACIÓN -->
+            <div class="stage-pane" id="stage-6">
+                <h1>Floreciendo en tu nueva vida</h1>
+                <p>Has dedicado un tiempo valioso a mirar hacia dentro. Reconocer tu transformación es el último paso para adueñarte de tu presente.</p>
+                
+                <div class="card">
+                    <div class="card-title">Evolución Consciente</div>
+                    <textarea id="ev-1" rows="2" placeholder="¿Cómo me sentía al iniciar este proceso de adaptación?" oninput="saveField('ev-1')"></textarea>
+                    <textarea id="ev-2" rows="2" placeholder="¿Cómo me siento hoy con respecto a mí y a mi entorno?" oninput="saveField('ev-2')"></textarea>
+                    <textarea id="ev-3" rows="3" placeholder="Describe a la mujer en la que te estás convirtiendo..." oninput="saveField('ev-3')"></textarea>
+                </div>
+
+                <div class="card" style="text-align: center; border: 2px dashed var(--terracotta);">
+                    <div class="badge-container">
+                        <div class="badge">🌸</div>
+                    </div>
+                    <h3>¡Felicidades, has completado tu guía!</h3>
+                    <p style="font-size:0.9rem; margin-top:10px;">Has recorrido un camino sumamente valiente. Sigue creciendo, aprendiendo y brillando con luz propia en cualquier latitud.</p>
+                    
+                    <button class="btn btn-primary" style="width:auto; margin-top:10px;" onclick="generateSummary()">Exportar Bitácora Completa (PDF/Imprimir)</button>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Dynamic Persistent Navigation Bar -->
+        <div class="nav-container">
+            <button class="btn btn-secondary" id="btn-prev" onclick="changeStage(-1)" disabled>Atrás</button>
+            <button class="btn btn-primary" id="btn-next" onclick="changeStage(1)">Continuar</button>
+        </div>
+    </div>
+
+    <!-- Script Layer containing state, logic, animation and printing features -->
+    <script>
+        let currentStage = 1;
+        const totalStages = 6;
+        
+        const affirmations = [
+            "Soy más fuerte de lo que imagino.",
+            "Estoy construyendo una vida nueva paso a paso.",
+            "Mi valor no depende de mi nivel de idioma.",
+            "Merezco pertenecer y ocupar este espacio.",
+            "Traigo conmigo la riqueza de mi cultura e historia.",
+            "Mi hogar está dentro de mí, yo soy mi propio centro."
+        ];
+
+        // App Initialization
+        window.addEventListener('DOMContentLoaded', () => {
+            loadSavedData();
+            updateUI();
+        });
+
+        function updateUI() {
+            // Manage Step View Panes
+            document.querySelectorAll('.stage-pane').forEach((pane, idx) => {
+                if(idx + 1 === currentStage) {
+                    pane.classList.add('active');
+                } else {
+                    pane.classList.remove('active');
+                }
+            });
+
+            // Adjust Progress Tracker Elements
+            const pct = (currentStage / totalStages) * 100;
+            document.getElementById('app-progress').style.width = `${pct}%`;
+
+            // Adjust Navigation Control Buttons
+            const prevBtn = document.getElementById('btn-prev');
+            const nextBtn = document.getElementById('btn-next');
+            
+            prevBtn.disabled = currentStage === 1;
+            
+            if (currentStage === totalStages) {
+                nextBtn.innerText = "Celebrar";
+                nextBtn.style.background = "var(--sage)";
+            } else {
+                nextBtn.innerText = "Continuar";
+                nextBtn.style.background = "var(--rose-gold)";
+            }
+            
+            // Dynamic evaluation rules inside view 3
+            if(currentStage === 3) {
+                evaluateSelfCare();
+            }
+        }
+
+        function changeStage(direction) {
+            if (direction === 1 && currentStage === totalStages) {
+                triggerConfetti();
+                return;
+            }
+            
+            currentStage += direction;
+            if(currentStage < 1) currentStage = 1;
+            if(currentStage > totalStages) currentStage = totalStages;
+            
+            updateUI();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Safe client data input binding
+        function saveField(id) {
+            const val = document.getElementById(id).value;
+            localStorage.setItem(`florece_${id}`, val);
+        }
+
+        function updateSlider(type) {
+            const slider = document.getElementById(`sl-${type}`);
+            document.getElementById(`v-${type}`).innerText = slider.value;
+            localStorage.setItem(`florece_sl_${type}`, slider.value);
+            if(type === 'sueno' || type === 'nutr' || type === 'ejer' || type === 'comp') {
+                evaluateSelfCare();
+            }
+        }
+
+        function toggleTask(element, id) {
+            const checkbox = document.getElementById(id);
+            // standard click toggle normalization
+            if (event.target.tagName !== 'INPUT') {
+                checkbox.checked = !checkbox.checked;
+            }
+            if(checkbox.checked) {
+                element.classList.add('checked');
+            } else {
+                element.classList.remove('checked');
+            }
+            localStorage.setItem(`florece_chk_${id}`, checkbox.checked ? "true" : "false");
+        }
+
+        function rotateAffirmation() {
+            const el = document.getElementById('daily-affirmation');
+            const currentText = el.innerText;
+            let randomItem = currentText;
+            while(randomItem === currentText) {
+                randomItem = affirmations[Math.floor(Math.random() * affirmations.length)];
+            }
+            el.innerText = randomItem;
+        }
+
+        function selectMood(mood) {
+            document.querySelectorAll('.mood-btn').forEach(btn => btn.classList.remove('selected'));
+            event.target.classList.add('selected');
+            localStorage.setItem('florece_mood', mood);
+        }
+
+        // Breathing sequence controller
+        let breathingInterval = null;
+        function toggleBreathing() {
+            const circle = document.getElementById('breathe-circle');
+            const trigger = document.getElementById('breathe-trigger');
+            
+            if(circle.classList.contains('expand')) {
+                circle.classList.remove('expand');
+                circle.innerText = "Respirar";
+                trigger.innerText = "Iniciar (60s)";
+                clearInterval(breathingInterval);
+            } else {
+                circle.classList.add('expand');
+                trigger.innerText = "Detener";
+                let counter = 0;
+                circle.innerText = "Inhala...";
+                
+                breathingInterval = setInterval(() => {
+                    counter += 4;
+                    if(counter % 8 === 0) {
+                        circle.innerText = "Inhala...";
+                    } else if(counter % 4 === 0) {
+                        circle.innerText = "Exhala...";
+                    }
+                    if(counter >= 60) {
+                        toggleBreathing();
+                    }
+                }, 4000);
+            }
+        }
+
+        // Personalized automated logic assessment
+        function evaluateSelfCare() {
+            const sueno = parseInt(document.getElementById('sl-sueno').value);
+            const nutr = parseInt(document.getElementById('sl-nutr').value);
+            const ejer = parseInt(document.getElementById('sl-ejer').value);
+            const comp = parseInt(document.getElementById('sl-comp').value);
+            
+            const target = document.getElementById('dynamic-suggestion');
+            
+            if(sueno <= 4) {
+                target.innerText = "Tus niveles de descanso son bajos. Intenta crear un ritual nocturno libre de pantallas 30 minutos antes de dormir. Tu mente procesa el doble de información al adaptarte a un entorno nuevo.";
+            } else if(comp <= 4) {
+                target.innerText = "Estás siendo muy dura contigo misma. Háblate hoy como le hablarías a tu mejor amiga. Aprender reglas y códigos de otra cultura requiere paciencia absoluta.";
+            } else if(nutr <= 5 || ejer <= 5) {
+                target.innerText = "El cuerpo sostiene tus emociones. Un paseo corto o integrar un ingrediente de tu país de origen en tu cena de hoy puede devolverte un poco de arraigo y energía primordial.";
+            } else {
+                target.innerText = "¡Mantienes un balance consciente hermoso! Sigue protegiendo estos espacios personales; son tu escudo protector contra el desgaste externo.";
+            }
+        }
+
+        // Small Wins Dynamic Pool Management
+        function addSmallWin() {
+            const input = document.getElementById('win-input');
+            const text = input.value.trim();
+            if(!text) return;
+
+            const pool = JSON.parse(localStorage.getItem('florece_wins_pool') || '[]');
+            pool.push(text);
+            localStorage.setItem('florece_wins_pool', JSON.stringify(pool));
+            
+            renderWinTag(text);
+            input.value = "";
+        }
+
+        function renderWinTag(text) {
+            const container = document.getElementById('wins-pool');
+            const tag = document.createElement('span');
+            tag.className = 'win-tag';
+            tag.innerText = `✓ ${text}`;
+            container.appendChild(tag);
+        }
+
+        // Local Storage State Hydration logic
+        function loadSavedData() {
+            const fields = [
+                'g1', 'g2', 'g3', 'g4', 'g5', 'reflection-younger',
+                'worry-1', 'worry-2', 'worry-3', 'social-diff', 'social-step',
+                'pres-1', 'pres-2', 'ev-1', 'ev-2', 'ev-3'
+            ];
+            fields.forEach(f => {
+                const val = localStorage.getItem(`florece_${f}`);
+                if(val) document.getElementById(f).value = val;
+            });
+
+            const sliders = ['sueno', 'nutr', 'ejer', 'comp', 'l1', 'l2'];
+            sliders.forEach(s => {
+                const val = localStorage.getItem(`florece_sl_${s}`);
+                if(val) {
+                    const el = document.getElementById(`sl-${s}`);
+                    if(el) {
+                        el.value = val;
+                        document.getElementById(`v-${s}`).innerText = val;
+                    }
+                }
+            });
+
+            const checkboxes = ['task1', 'task2', 'task3', 'chk1', 'chk2', 'chk3'];
+            checkboxes.forEach(c => {
+                const val = localStorage.getItem(`florece_chk_${c}`);
+                if(val === "true") {
+                    const el = document.getElementById(c);
+                    if(el) {
+                        el.checked = true;
+                        el.closest('.interactive-item').classList.add('checked');
+                    }
+                }
+            });
+
+            const savedMood = localStorage.getItem('florece_mood');
+            if(savedMood) {
+                document.querySelectorAll('.mood-btn').forEach(btn => {
+                    if(btn.innerText.includes(savedMood)) btn.classList.add('selected');
+                });
+            }
+
+            const pool = JSON.parse(localStorage.getItem('florece_wins_pool') || '[]');
+            pool.forEach(text => renderWinTag(text));
+        }
+
+        // Presentation Ceremony Canvas Engine
+        function triggerConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.style.display = 'block';
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+
+            let particles = [];
+            const colors = ['#C87A63', '#8A9A86', '#E5B2A3', '#F7F3EB'];
+
+            for (let i = 0; i < 75; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    r: Math.random() * 4 + 2,
+                    d: Math.random() * canvas.height,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    tilt: Math.random() * 10 - 5,
+                    tiltAngleIncremental: Math.random() * 0.07 + 0.02,
+                    tiltAngle: 0
+                });
+            }
+
+            let animationFrameId;
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                let living = false;
+                
+                particles.forEach((p, idx) => {
+                    p.tiltAngle += p.tiltAngleIncremental;
+                    p.y += (Math.cos(p.d) + 3 + p.r / 2) / 2;
+                    p.x += Math.sin(p.tiltAngle);
+                    p.tilt = Math.sin(p.tiltAngle - idx / 3) * 15;
+
+                    if(p.y < canvas.height) living = true;
+
+                    ctx.beginPath();
+                    ctx.lineWidth = p.r;
+                    ctx.strokeStyle = p.color;
+                    ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
+                    ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
+                    ctx.stroke();
+                });
+
+                if(living) {
+                    animationFrameId = requestAnimationFrame(draw);
+                } else {
+                    canvas.style.display = 'none';
+                    cancelAnimationFrame(animationFrameId);
+                }
+            }
+            draw();
+        }
+
+        // Clean Print Layout Stream Generator
+        function generateSummary() {
+            const win = window.open('', '_blank');
+            const pool = JSON.parse(localStorage.getItem('florece_wins_pool') || '[]');
+            let winsHtml = pool.map(w => `<li>${w}</li>`).join('');
+            if(!winsHtml) winsHtml = "<li>No se registraron victorias aún. ¡Cada paso cuenta!</li>";
+
+            win.document.write(`
+                <html>
+                <head>
+                    <title>Mi Bitácora - Florece Donde Estés</title>
+                    <style>
+                        body { font-family: 'Plus Jakarta Sans', sans-serif; color: #3A3530; padding: 40px; line-height: 1.6; }
+                        h1 { font-family: 'Cormorant Garamond', serif; color: #C87A63; font-size: 2.5rem; border-bottom: 1px solid #E2E7E1; padding-bottom: 10px; }
+                        h2 { font-family: 'Cormorant Garamond', serif; color: #8A9A86; font-size: 1.6rem; margin-top: 30px; }
+                        .block { background: #F7F3EB; padding: 15px; border-radius: 8px; margin-bottom: 15px; white-space: pre-wrap; font-size: 0.95rem; }
+                        .label { font-weight: bold; font-size: 0.85rem; text-transform: uppercase; color: #706961; margin-bottom: 5px; }
+                    </style>
+                </head>
+                <body>
+                    <h1>Florece Donde Estés</h1>
+                    <p>Bitácora personal de crecimiento, resiliencia y adaptación cultural.</p>
+                    
+                    <h2>1. Bienvenida y Gratitud</h2>
+                    <div class="label">Cosas por las que agradezco / Logros:</div>
+                    <div class="block">${win.opener.document.getElementById('g1').value || '—'}\n${win.opener.document.getElementById('g2').value || '—'}\n${win.opener.document.getElementById('g3').value || '—'}</div>
+                    <div class="label">Carta a mi versión más joven:</div>
+                    <div class="block">${win.opener.document.getElementById('reflection-younger').value || '—'}</div>
+                    
+                    <h2>2. Bienestar Emocional</h2>
+                    <div class="label">Estado de Ánimo:</div>
+                    <div class="block">${localStorage.getItem('florece_mood') || 'No seleccionado'}</div>
+                    <div class="label">Gestión de Preocupaciones:</div>
+                    <div class="block">Lo que me preocupa: ${win.opener.document.getElementById('worry-1').value || '—'}\nLo que controlo: ${win.opener.document.getElementById('worry-2').value || '—'}\nLo que suelto: ${win.opener.document.getElementById('worry-3').value || '—'}</div>
+                    
+                    <h2>3. Pequeñas Victorias Registradas</h2>
+                    <ul>${winsHtml}</ul>
+
+                    <h2>4. Mi Nueva Visión</h2>
+                    <div class="label">La mujer en la que me estoy convirtiendo:</div>
+                    <div class="block">${win.opener.document.getElementById('ev-3').value || '—'}</div>
+
+                    <p style="margin-top:50px; text-align:center; font-style:italic; color:#C87A63;">"Has recorrido un camino valiente. Sigue creciendo, aprendiendo y brillando."</p>
+                </body>
+                </html>
+            `);
+            win.document.close();
+            win.print();
+        }
+    </script>
+</body>
+</html>
